@@ -1,9 +1,14 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const blogRouter = require("./routes/blogRoutes");
-const globalErrorHandler = require("./controllers/errorController");
+
+// Errors
 const AppError = require("./utils/appError");
+const globalErrorHandler = require("./controllers/errorController");
+
+// Routers
+const blogRouter = require("./routes/blogRoutes");
+const userRouter = require("./routes/userRoutes");
 
 const app = express();
 
@@ -16,6 +21,7 @@ app.use(morgan("dev"));
 
 // Endpoints
 app.use("/api/v1/blogs", blogRouter);
+app.use("/api/v1/users", userRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find the ${req.originalUrl} on this server!`, 404));

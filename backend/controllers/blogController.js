@@ -13,7 +13,7 @@ exports.getAllBlogs = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getBlog = catchAsync(async (req, res) => {
+exports.getBlog = catchAsync(async (req, res, next) => {
   const { id } = req.params;
   const blog = await Blog.findById(id);
 
@@ -25,7 +25,7 @@ exports.getBlog = catchAsync(async (req, res) => {
   });
 });
 
-exports.createBlog = catchAsync(async (req, res) => {
+exports.createBlog = catchAsync(async (req, res, next) => {
   const newBlog = await Blog.create(req.body);
 
   res.status(200).json({
@@ -36,7 +36,7 @@ exports.createBlog = catchAsync(async (req, res) => {
   });
 });
 
-exports.updateBlog = catchAsync(async (req, res) => {
+exports.updateBlog = catchAsync(async (req, res, next) => {
   const { id } = req.params;
   const blog = await Blog.findByIdAndUpdate(id, req.body, {
     new: true,
@@ -51,7 +51,7 @@ exports.updateBlog = catchAsync(async (req, res) => {
   });
 });
 
-exports.deleteBlog = catchAsync(async (req, res) => {
+exports.deleteBlog = catchAsync(async (req, res, next) => {
   const { id } = req.params;
   const blog = await Blog.findByIdAndDelete(id);
 
