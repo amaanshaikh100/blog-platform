@@ -35,6 +35,12 @@ const blogSchema = new mongoose.Schema(
   }
 );
 
+// blogSchema.virtual("comments", {
+//   ref: "Comment",
+//   foreignField: "blog",
+//   localField: "_id",
+// });
+
 const Blog = mongoose.model("Blog", blogSchema);
 
 module.exports = Blog;

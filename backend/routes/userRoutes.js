@@ -8,6 +8,8 @@ router.route("/signup").post(authController.signup);
 
 router.route("/login").post(authController.login);
 
+router.use(authController.protect, authController.restrictTo("admin"));
+
 router
   .route("/")
   .get(
